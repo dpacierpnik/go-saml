@@ -206,6 +206,7 @@ type Assertion struct {
 	Issuer             Issuer `xml:"Issuer"`
 	Subject            Subject
 	Conditions         Conditions
+	AuthnStatement     AuthnStatement
 	AttributeStatement AttributeStatement
 }
 
@@ -222,6 +223,24 @@ type AudienceRestriction struct {
 }
 
 type Audience struct {
+	XMLName xml.Name
+	Value   string `xml:",innerxml"`
+}
+
+type AuthnStatement struct {
+	XMLName             xml.Name
+	AuthnInstant        string `xml:"AuthnInstant,attr"`
+	SessionIndex        string `xml:"SessionIndex,attr"`
+	SessionNotOnOrAfter string `xml:"SessionNotOnOrAfter,attr"`
+	AuthnContext        AuthnContext
+}
+
+type AuthnContext struct {
+	XMLName              xml.Name
+	AuthnContextClassRef AuthnContextClassRef
+}
+
+type AuthnContextClassRef struct {
 	XMLName xml.Name
 	Value   string `xml:",innerxml"`
 }
