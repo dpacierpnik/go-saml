@@ -1,4 +1,4 @@
-package saml
+package xmlsec2
 
 import (
 	"encoding/xml"
@@ -6,6 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"dpacierpnik/go-saml/util"
+	"dpacierpnik/go-saml"
 )
 
 func TestRequest(t *testing.T) {
@@ -14,7 +15,7 @@ func TestRequest(t *testing.T) {
 	assert.NoError(err)
 
 	// Construct an AuthnRequest
-	authRequest := NewAuthnRequest()
+	authRequest := saml.NewAuthnRequest()
 	authRequest.Signature.KeyInfo.X509Data.X509Certificate.Cert = cert
 
 	b, err := xml.MarshalIndent(authRequest, "", "    ")
@@ -35,7 +36,7 @@ func TestResponse(t *testing.T) {
 	assert.NoError(err)
 
 	// Construct an AuthnRequest
-	response := NewSignedResponse()
+	response := saml.NewSignedResponse()
 	response.Signature.KeyInfo.X509Data.X509Certificate.Cert = cert
 
 	b, err := xml.MarshalIndent(response, "", "    ")
