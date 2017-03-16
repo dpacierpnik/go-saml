@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"dpacierpnik/go-saml/util"
+	"dpacierpnik/go-saml/xmlsec2"
 )
 
 func ParseCompressedEncodedResponse(b64ResponseXML string) (*Response, error) {
@@ -75,7 +76,7 @@ func (r *Response) Validate(s *ServiceProviderSettings) error {
 		return errors.New("subject recipient mismatch, expected: " + s.AssertionConsumerServiceURL + " not " + r.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.Recipient)
 	}
 
-	err := VerifyResponseSignature(r.originalString, s.IDPPublicCertPath)
+	err := xmlsec2.VerifyResponseSignature(r.originalString, s.IDPPublicCertPath)
 	if err != nil {
 		return err
 	}
@@ -285,7 +286,7 @@ func (r *Response) SignedString(privateKeyPath string) (string, error) {
 		return "", err
 	}
 
-	return SignResponse(s, privateKeyPath)
+	return xmlsec2.SignResponse(s, privateKeyPath)
 }
 
 func (r *Response) EncodedSignedString(privateKeyPath string) (string, error) {
