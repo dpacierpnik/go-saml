@@ -237,7 +237,7 @@ type AuthnStatement struct {
 
 type AuthnContext struct {
 	XMLName              xml.Name
-	AuthnContextClassRef ResAuthnContextClassRef `xml:"AuthnContextClassRef,innerxml"`
+	AuthnContextClassRef ResAuthnContextClassRef `xml:"AuthnContextClassRef"`
 }
 
 type ResAuthnContextClassRef struct {
