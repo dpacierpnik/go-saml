@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"dpacierpnik/go-saml/util"
-	"dpacierpnik/go-saml"
+	"github.com/dpacierpnik/go-saml/util"
+	"github.com/dpacierpnik/go-saml"
 )
 
 func TestRequest(t *testing.T) {

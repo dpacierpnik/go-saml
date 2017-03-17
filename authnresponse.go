@@ -6,8 +6,8 @@ import (
 	"errors"
 	"time"
 
-	"dpacierpnik/go-saml/util"
-	"dpacierpnik/go-saml/xmlsec2"
+	"github.com/dpacierpnik/go-saml/util"
+	"github.com/dpacierpnik/go-saml/xmlsec2"
 )
 
 func ParseCompressedEncodedResponse(b64ResponseXML string) (*Response, error) {
