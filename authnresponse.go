@@ -272,7 +272,7 @@ func (r *Response) AddAttribute(name, value string) {
 }
 
 func (r *Response) String() (string, error) {
-	b, err := xml.MarshalIndent(r, "", "    ")
+	b, err := xml.Marshal(r)
 	if err != nil {
 		return "", err
 	}
